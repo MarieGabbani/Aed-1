@@ -14,12 +14,10 @@ if mail[0] == "." or mail[-1] == ".":
             print("Llegó al límite de intentos permitidos\n\tFinalizando Programa...")
             exit()
 else:
-    print("Correo VÁLIDO\nContinúe...")
-print("\n")
+    print("Correo VÁLIDO\nContinúe...\n")
+
 
 #Generacion de datos aleatorios...
-pacientes = int(input("Cantidad de casos sospechosos es: "))
-resultado = (1, 2)
 region = ("Capital", "Gran Córdoba", "Norte", "Sur")
 contac_conf = ("Si", "No")
 ps = ("Si", "No")
@@ -39,12 +37,19 @@ suma_mayores = 0
 prom_mayores = 0
 edades = []
 suma_edades = 0
+prom_edades = 0
+pacientes = int(input("Ingrese la cantidad de pacientes:\n"))
+
+while pacientes <= 0:
+    print("La cantidad de pacientes debe ser positiva")
+    pacientes = int(input("Ingrese la cantidad de pacientes:\n"))
 
 for i in range(pacientes):
+    resultado = (1,2)
     import random
     edad = random.randint(1, 100)
     r_test = random.choice(resultado)
-    if r_test == -1:
+    if r_test == 2:
         r_test = "Positivo"
         casos_conf += 1
         edades.append(edad)
@@ -113,9 +118,9 @@ porc_ps = ps_contador * pacientes / 100
 print("Cantidad de personal de salud: ", ps_contador)
 print("Porcentaje de personal de salud sobre total de casos: ", porc_ps)
 print("." * 30)
-
-prom_edades = suma_edades / casos_conf
-print("El promedio de edades entre pacientes es: ", prom_edades)
+if casos_conf > 0:
+    prom_edades = suma_edades / casos_conf
+print("El promedio de edades entre pacientes sospechosos POSITIVO es: ", prom_edades)
 print("." * 30)
 
 print("Cantidad de casos en Capital: ", casos_capital)
